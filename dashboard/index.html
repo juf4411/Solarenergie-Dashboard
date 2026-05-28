@@ -10,10 +10,10 @@
     <aside class="sidebar" aria-label="Navigation">
       <div class="brand"><span class="brand-mark">SD</span><span>Solardaten</span></div>
       <nav>
-        <a class="active" href="/">Dashboard</a>
-        <a href="#leistung">Leistung</a>
-        <a href="#energie">Energie</a>
-        <a href="#messwerte">Messwerte</a>
+        <a class="active" href="#dashboard" data-view="dashboard">Dashboard</a>
+        <a href="#leistung" data-view="leistung">Leistung</a>
+        <a href="#energie" data-view="energie">Energie</a>
+        <a href="#messwerte" data-view="messwerte">Messwerte</a>
       </nav>
       <div class="api-links">
         <p>Technik</p>
@@ -33,7 +33,7 @@
         <div class="status-pill" id="dataStatus">Daten werden geladen</div>
       </header>
 
-      <section class="overview">
+      <section class="overview view-section" data-view-section="dashboard">
         <article class="hero-panel">
           <img src="/dashboard/assets/thi-campus.jpg" alt="Gebaeude der Technischen Hochschule Ingolstadt" />
           <div class="hero-text">
@@ -59,7 +59,7 @@
       </section>
 
       <section class="grid">
-        <article class="panel chart-panel" id="leistung">
+        <article class="panel chart-panel view-section" id="leistung" data-view-section="leistung">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Leistung</p>
@@ -70,7 +70,7 @@
           <canvas id="powerChart" width="780" height="300"></canvas>
         </article>
 
-        <article class="panel donut-panel">
+        <article class="panel donut-panel view-section" data-view-section="leistung">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Status</p>
@@ -84,7 +84,7 @@
           </dl>
         </article>
 
-        <article class="panel chart-panel" id="energie">
+        <article class="panel chart-panel view-section" id="energie" data-view-section="energie">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Energie</p>
@@ -94,7 +94,7 @@
           <canvas id="energyChart" width="780" height="300"></canvas>
         </article>
 
-        <article class="panel table-panel" id="messwerte">
+        <article class="panel table-panel view-section" id="messwerte" data-view-section="messwerte">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Letzte Werte</p>

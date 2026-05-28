@@ -9,6 +9,18 @@ function setText(id, value) {
   document.getElementById(id).textContent = value;
 }
 
+function setView(viewName) {
+  const selectedView = viewName || "dashboard";
+  document.querySelectorAll("[data-view]").forEach((link) => {
+    link.classList.toggle("active", link.dataset.view === selectedView);
+  });
+  document.querySelectorAll("[data-view-section]").forEach((section) => {
+    const showAll = selectedView === "dashboard";
+    section.classList.toggle("is-hidden", !showAll && section.dataset.viewSection !== selectedView);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function drawLineChart(canvas, readings, key, color, unit) {
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
@@ -115,3 +127,14 @@ async function loadDashboard() {
 
 loadDashboard();
 setInterval(loadDashboard, 30000);
+
+document.querySelectorAll("[data-view]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const viewName = event.currentTarget.dataset.view;
+    history.replaceState(null, "", `#${viewName}`);
+    setView(viewName);
+  });
+});
+
+setView(window.location.hash.replace("#", "") || "dashboard");

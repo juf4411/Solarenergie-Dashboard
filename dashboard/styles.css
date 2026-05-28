@@ -12,6 +12,14 @@
 
 * { box-sizing: border-box; }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.view-section.is-hidden {
+  display: none;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -254,7 +262,36 @@ th { color: var(--muted); font-weight: 700; }
 }
 
 @media (max-width: 760px) {
-  .sidebar { position: static; width: 100%; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    padding: 12px;
+  }
+
+  .brand {
+    margin-bottom: 12px;
+  }
+
+  nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  nav a {
+    padding: 9px 10px;
+  }
+
+  .api-links {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .api-links a {
+    display: inline-block;
+    margin-right: 12px;
+    padding: 4px 0;
+  }
+
   .page { margin-left: 0; padding: 18px; }
   .topbar { align-items: flex-start; flex-direction: column; }
 }
