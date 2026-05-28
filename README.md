@@ -1,6 +1,6 @@
 # Solarenergie-Dashboard
 
-Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammelt Messwerte, speichert sie, berechnet einfache Kennzahlen und stellt die Werte fuer ein Grafana-Dashboard bereit.
+Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammelt Messwerte, speichert sie, berechnet einfache Kennzahlen und zeigt sie in einem eigenen Dashboard im Browser an.
 
 ## Inhalt
 
@@ -11,12 +11,25 @@ Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammel
   - `solar_processing/processing.py`
   - `solar_server/server.py`
 - 5 zugehoerige Testdateien im Ordner `tests`
-- Docker Compose mit App, Prometheus und Grafana
+- Docker Compose mit App, Prometheus und Grafana als optionales Monitoring
 - SQLite-Speicherung der Messwerte
-- Prometheus-Metriken fuer Grafana
+- Prometheus-Metriken fuer technische Auswertung
 
 Eine kurze fachliche Erklaerung steht in `PROJEKT_ERKLAERUNG.md`.
 Das Campusbild im Dashboard stammt aus Wikimedia Commons; die genaue Quelle steht in `dashboard/assets/README.md`.
+
+## Welche Ansicht ist wichtig?
+
+Fuer die normale Benutzung und Vorfuehrung ist das eingebaute Dashboard die wichtigste Ansicht:
+
+- Dashboard: <http://localhost:8000>
+
+Prometheus und Grafana sind nicht dasselbe:
+
+- Prometheus sammelt technische Messwerte vom Server.
+- Grafana kann diese Messwerte als Monitoring-Dashboard anzeigen.
+
+Praktischer fuer dieses Studienprojekt ist die eigene Dashboard-Seite der App. Prometheus und Grafana bleiben im Projekt enthalten, weil sie gut fuer Monitoring sind und mit Docker Compose gestartet werden koennen.
 
 ## In PyCharm starten
 
@@ -71,7 +84,7 @@ Grafana Login:
 - Benutzer: `admin`
 - Passwort: `admin`
 
-Das Dashboard liegt in Grafana im Ordner `Solar`.
+Grafana liegt im Ordner `Solar`. Fuer die normale Projektvorfuehrung reicht aber meistens das eingebaute Dashboard unter <http://localhost:8000>.
 
 ## Testdaten
 

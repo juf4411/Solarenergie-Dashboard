@@ -4,7 +4,7 @@ Diese Datei fasst zusammen, wie das Projekt aufgebaut ist und welche Idee hinter
 
 ## Grundidee
 
-Die Anwendung sammelt Messwerte einer Solaranlage, speichert sie lokal und bereitet sie fuer ein Dashboard auf. Wenn noch keine echten Hochschuldaten vorhanden sind, werden markierte Testdaten verwendet. Dadurch kann man die App direkt starten und in Grafana trotzdem Kurven und Werte sehen.
+Die Anwendung sammelt Messwerte einer Solaranlage, speichert sie lokal und bereitet sie fuer ein Dashboard auf. Wenn noch keine echten Hochschuldaten vorhanden sind, werden markierte Testdaten verwendet. Dadurch kann man die App direkt starten und im eingebauten Dashboard Kurven und Werte sehen.
 
 Der Datenfluss ist:
 
@@ -12,7 +12,17 @@ Der Datenfluss ist:
 2. Daten pruefen und in ein einheitliches Format bringen
 3. Daten in SQLite speichern
 4. Kennzahlen berechnen, zum Beispiel Mittelwert
-5. Daten ueber API und Prometheus fuer das Dashboard bereitstellen
+5. Daten ueber API, eigenes Dashboard und Prometheus bereitstellen
+
+## Dashboard, Prometheus und Grafana
+
+Prometheus und Grafana sind nicht das Gleiche.
+
+Prometheus sammelt Messwerte. In diesem Projekt ruft Prometheus den Endpunkt `/metrics` ab und speichert technische Zeitreihen wie aktuelle Leistung, Durchschnittsleistung und Temperatur.
+
+Grafana visualisiert solche Zeitreihen. Es ist praktisch, wenn man Monitoring mit Docker zeigen moechte.
+
+Fuer die eigentliche Projektvorfuehrung ist aber das eingebaute Dashboard unter `http://localhost:8000` praktischer. Es ist direkt in der App enthalten, laeuft in PyCharm ohne Docker und zeigt die Testdaten sofort grafisch an.
 
 ## Warum die Module getrennt sind
 
@@ -42,14 +52,15 @@ Diese Markierung ist wichtig, damit klar ist: Das sind keine echten Daten der Ho
 - `/health`: einfacher Test, ob der Server laeuft
 - `/readings`: gespeicherte Messwerte
 - `/latest`: neuester Messwert
-- `/summary`: vorbereitete Kennzahlen fuer ein Dashboard
-- `/metrics`: Prometheus-Metriken fuer Grafana
+- `/summary`: vorbereitete Kennzahlen fuer das Dashboard
+- `/metrics`: Prometheus-Metriken fuer optionales Monitoring
 
 ## Was man in der Abgabe erklaeren kann
 
 - SQLite wurde gewaehlt, weil es ohne extra Datenbankserver lokal funktioniert.
-- Prometheus liest regelmaessig die Metriken vom Server.
-- Grafana visualisiert diese Metriken als Dashboard.
+- Das eingebaute Dashboard ist die praktische Hauptansicht fuer die Vorfuehrung.
+- Prometheus liest regelmaessig die Metriken vom Server, wenn Docker Compose genutzt wird.
+- Grafana kann diese Metriken zusaetzlich als Monitoring-Dashboard visualisieren.
 - Docker Compose startet App, Prometheus und Grafana zusammen.
 - PyCharm kann die App ueber `main.py` direkt starten.
 - Die Tests pruefen die Funktionen in den einzelnen Modulen.
