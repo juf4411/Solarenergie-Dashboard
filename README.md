@@ -32,7 +32,7 @@ py -m pip install -r requirements.txt
 
 Danach laeuft die App direkt aus PyCharm:
 
-- App/API: <http://localhost:8000>
+- Dashboard: <http://localhost:8000>
 - API-Dokumentation: <http://localhost:8000/docs>
 - Metriken fuer Prometheus: <http://localhost:8000/metrics>
 
@@ -58,7 +58,7 @@ docker compose up --build
 
 Danach sind die Dienste hier erreichbar:
 
-- App/API: <http://localhost:8000>
+- Dashboard: <http://localhost:8000>
 - API-Dokumentation: <http://localhost:8000/docs>
 - Prometheus: <http://localhost:9090>
 - Grafana: <http://localhost:3000>

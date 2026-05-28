@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solarenergie Dashboard</title>
+    <link rel="stylesheet" href="/dashboard/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Navigation">
+      <div class="brand"><span class="brand-mark">SD</span><span>Solardaten</span></div>
+      <nav>
+        <a class="active" href="/">Dashboard</a>
+        <a href="/readings">Messwerte</a>
+        <a href="/summary">Kennzahlen</a>
+        <a href="/metrics">Metriken</a>
+        <a href="/docs">API Docs</a>
+      </nav>
+    </aside>
+
+    <main class="page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Hochschule PV-Anlage</p>
+          <h1>Solarenergie Dashboard</h1>
+        </div>
+        <div class="status-pill" id="dataStatus">Daten werden geladen</div>
+      </header>
+
+      <section class="overview">
+        <article class="hero-panel">
+          <img src="/dashboard/assets/solar-campus.png" alt="Gebaeude mit Solaranlage" />
+          <div class="hero-text">
+            <p>Aktuelle Anlage</p>
+            <h2 id="plantName">hochschule-pv-testanlage</h2>
+          </div>
+        </article>
+        <article class="metric-card">
+          <p>Aktuelle Leistung</p>
+          <strong id="currentPower">-- W</strong>
+          <span>Momentan gemessene PV-Leistung</span>
+        </article>
+        <article class="metric-card">
+          <p>Mittelwert</p>
+          <strong id="averagePower">-- W</strong>
+          <span>Durchschnitt der gespeicherten Werte</span>
+        </article>
+        <article class="metric-card">
+          <p>Energie heute</p>
+          <strong id="dailyEnergy">-- kWh</strong>
+          <span>Hoechster Tageswert im Datensatz</span>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel chart-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Leistung</p>
+              <h2>Tagesverlauf</h2>
+            </div>
+            <span id="readingCount">0 Werte</span>
+          </div>
+          <canvas id="powerChart" width="780" height="300"></canvas>
+        </article>
+
+        <article class="panel donut-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Status</p>
+              <h2>Auslastung</h2>
+            </div>
+          </div>
+          <div class="donut" id="powerDonut"><span id="donutValue">0%</span></div>
+          <dl class="stats-list">
+            <div><dt>Temperatur</dt><dd id="temperature">-- C</dd></div>
+            <div><dt>Datenquelle</dt><dd id="sourceName">--</dd></div>
+          </dl>
+        </article>
+
+        <article class="panel chart-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Energie</p>
+              <h2>Ertrag je Messpunkt</h2>
+            </div>
+          </div>
+          <canvas id="energyChart" width="780" height="300"></canvas>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Letzte Werte</p>
+              <h2>Messdaten</h2>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Zeit</th><th>Leistung</th><th>Energie</th></tr>
+            </thead>
+            <tbody id="readingRows"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <script src="/dashboard/app.js"></script>
+  </body>
+</html>

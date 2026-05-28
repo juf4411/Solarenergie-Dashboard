@@ -8,7 +8,9 @@ import time
 
 from fastapi import FastAPI
 from prometheus_client import CONTENT_TYPE_LATEST, Gauge, generate_latest
+from starlette.responses import FileResponse
 from starlette.responses import Response
+from starlette.staticfiles import StaticFiles
 
 from solar_config.config import load_config, validate_config
 from solar_fetcher.fetcher import fetch_reading, load_test_readings, normalize_reading
@@ -23,6 +25,8 @@ from solar_storage.storage import (
 
 
 logger = logging.getLogger(__name__)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DASHBOARD_DIR = PROJECT_ROOT / "dashboard"
 
 CURRENT_POWER = Gauge("solar_current_power_w", "Current photovoltaic power in watts")
 AVERAGE_POWER = Gauge("solar_average_power_w", "Average photovoltaic power in watts")
@@ -115,6 +119,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Hochschule Solar Dashboard", lifespan=lifespan)
+app.mount("/dashboard", StaticFiles(directory=DASHBOARD_DIR), name="dashboard")
+
+
+@app.get("/")
+def dashboard() -> FileResponse:
+    """Return the visual dashboard page."""
+
+    return FileResponse(DASHBOARD_DIR / "index.html")
 
 
 @app.get("/health")
