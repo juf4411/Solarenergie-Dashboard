@@ -16,6 +16,7 @@ Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammel
 - Prometheus-Metriken fuer Grafana
 
 Eine kurze fachliche Erklaerung steht in `PROJEKT_ERKLAERUNG.md`.
+Das Campusbild im Dashboard stammt aus Wikimedia Commons; die genaue Quelle steht in `dashboard/assets/README.md`.
 
 ## In PyCharm starten
 
