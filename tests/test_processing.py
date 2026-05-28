@@ -13,6 +13,8 @@ READINGS = [
         "power_w": 300.0,
         "energy_today_kwh": 2.5,
         "temperature_c": 20.0,
+        "data_source": "TESTDATEN_DATEI",
+        "is_test_data": True,
     },
     {
         "timestamp": "2026-05-28T10:00:00+00:00",
@@ -20,6 +22,8 @@ READINGS = [
         "power_w": 100.0,
         "energy_today_kwh": 1.5,
         "temperature_c": 19.5,
+        "data_source": "TESTDATEN_DATEI",
+        "is_test_data": True,
     },
 ]
 
@@ -35,6 +39,8 @@ def test_build_dashboard_summary_uses_latest_first():
     assert summary["reading_count"] == 2
     assert summary["latest"]["timestamp"] == "2026-05-28T11:00:00+00:00"
     assert summary["average_power_w"] == 200.0
+    assert summary["contains_test_data"] is True
+    assert summary["latest_is_test_data"] is True
 
 
 def test_format_reading_for_display():
@@ -42,3 +48,4 @@ def test_format_reading_for_display():
 
     assert formatted["power"] == "300.00 W"
     assert formatted["energy_today"] == "2.500 kWh"
+    assert formatted["data_type"] == "TESTDATEN"

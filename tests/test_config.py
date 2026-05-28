@@ -13,6 +13,8 @@ def test_load_config_uses_defaults(monkeypatch):
     assert config.data_source_url is None
     assert config.database_path == "data/solar.db"
     assert config.fetch_interval_seconds == 60
+    assert config.test_data_path == "testdata/solar_testdaten.json"
+    assert config.seed_test_data is True
 
 
 def test_validate_config_rejects_invalid_interval():
@@ -20,6 +22,8 @@ def test_validate_config_rejects_invalid_interval():
         data_source_url=None,
         database_path="data/solar.db",
         fetch_interval_seconds=0,
+        test_data_path=None,
+        seed_test_data=False,
     )
 
     with pytest.raises(ValueError):

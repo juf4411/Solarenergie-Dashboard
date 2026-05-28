@@ -27,6 +27,8 @@ def build_dashboard_summary(readings: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "reading_count": len(readings),
         "latest": latest,
+        "contains_test_data": any(bool(reading.get("is_test_data", False)) for reading in readings),
+        "latest_is_test_data": bool(latest and latest.get("is_test_data", False)),
         "average_power_w": calculate_average_power(readings),
         "energy_today_kwh": calculate_total_energy(readings),
     }
@@ -41,4 +43,6 @@ def format_reading_for_display(reading: dict[str, Any]) -> dict[str, str]:
         "power": f"{float(reading['power_w']):.2f} W",
         "energy_today": f"{float(reading['energy_today_kwh']):.3f} kWh",
         "temperature": f"{float(reading['temperature_c']):.2f} C",
+        "data_source": str(reading.get("data_source", "live")),
+        "data_type": "TESTDATEN" if reading.get("is_test_data", False) else "ECHTDATEN",
     }

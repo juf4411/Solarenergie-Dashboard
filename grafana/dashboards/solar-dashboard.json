@@ -114,6 +114,46 @@
       ],
       "title": "Temperatur",
       "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "Prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "ECHTDATEN"
+                },
+                "1": {
+                  "text": "TESTDATEN"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 5,
+      "targets": [
+        {
+          "expr": "solar_test_data_active",
+          "legendFormat": "Datenstatus"
+        }
+      ],
+      "title": "Datenstatus",
+      "type": "stat"
     }
   ],
   "refresh": "10s",

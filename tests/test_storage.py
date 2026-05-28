@@ -26,6 +26,7 @@ def test_insert_and_list_readings():
     readings = list_readings(connection)
     assert len(readings) == 1
     assert readings[0]["power_w"] == 1200.0
+    assert readings[0]["is_test_data"] is False
 
 
 def test_duplicate_reading_is_ignored():
@@ -36,3 +37,15 @@ def test_duplicate_reading_is_ignored():
     assert insert_reading(connection, reading) is True
     assert insert_reading(connection, reading) is False
     assert latest_reading(connection)["plant_id"] == "hochschule-pv-1"
+
+
+def test_testdata_marker_is_persisted():
+    connection = connect(":memory:")
+    initialize_database(connection)
+    reading = {**sample_reading(), "data_source": "TESTDATEN_DATEI", "is_test_data": True}
+
+    insert_reading(connection, reading)
+
+    latest = latest_reading(connection)
+    assert latest["data_source"] == "TESTDATEN_DATEI"
+    assert latest["is_test_data"] is True

@@ -5,6 +5,8 @@ services:
     environment:
       SOLAR_DATABASE_PATH: /app/data/solar.db
       SOLAR_FETCH_INTERVAL_SECONDS: 30
+      SOLAR_TEST_DATA_PATH: /app/testdata/solar_testdaten.json
+      SOLAR_SEED_TEST_DATA: "true"
     ports:
       - "8000:8000"
     volumes:

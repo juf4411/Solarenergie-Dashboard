@@ -1,7 +1,9 @@
 """Fetch and normalize raw solar plant readings."""
 
 from datetime import datetime, timezone
+import json
 import math
+from pathlib import Path
 import random
 from typing import Any
 
@@ -31,6 +33,8 @@ def generate_sample_reading(plant_id: str = "hochschule-pv-1") -> dict[str, Any]
         "power_w": power_w,
         "energy_today_kwh": round(power_w / 1000 * 4.2, 3),
         "temperature_c": round(18 + daylight_factor * 14 + random.uniform(-1.5, 1.5), 2),
+        "data_source": "TESTDATEN_GENERATOR",
+        "is_test_data": True,
     }
 
 
@@ -63,10 +67,37 @@ def normalize_reading(raw: dict[str, Any]) -> dict[str, Any]:
     if timestamp.tzinfo is None:
         timestamp = timestamp.replace(tzinfo=timezone.utc)
 
+    is_test_data = bool(raw.get("is_test_data", False))
+    data_source = str(raw.get("data_source", "TESTDATEN" if is_test_data else "live"))
+
     return {
         "timestamp": timestamp.astimezone(timezone.utc).isoformat(),
         "plant_id": str(raw["plant_id"]),
         "power_w": float(raw["power_w"]),
         "energy_today_kwh": float(raw["energy_today_kwh"]),
         "temperature_c": float(raw["temperature_c"]),
+        "data_source": data_source,
+        "is_test_data": is_test_data,
     }
+
+
+def load_test_readings(path: str) -> list[dict[str, Any]]:
+    """Load clearly marked test readings from a JSON file."""
+
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    readings = payload.get("readings", payload) if isinstance(payload, dict) else payload
+    if not isinstance(readings, list):
+        raise ValueError("test data file must contain a list of readings")
+
+    marked_readings = []
+    for reading in readings:
+        if not isinstance(reading, dict):
+            raise ValueError("each test reading must be a JSON object")
+        marked_readings.append(
+            {
+                **reading,
+                "data_source": reading.get("data_source", "TESTDATEN_DATEI"),
+                "is_test_data": True,
+            }
+        )
+    return marked_readings

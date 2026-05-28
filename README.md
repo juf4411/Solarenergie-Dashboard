@@ -42,6 +42,17 @@ Grafana Login:
 
 Das Dashboard liegt in Grafana im Ordner `Solar`.
 
+## Testdaten
+
+Damit das Dashboard sofort Daten anzeigen kann, werden beim Start markierte Testdaten geladen:
+
+- Datei: `testdata/solar_testdaten.json`
+- Markierung je Datensatz: `"is_test_data": true`
+- Datenquelle je Datensatz: `"data_source": "TESTDATEN_DATEI"`
+- Prometheus-Marker: `solar_test_data_active`
+
+Die Testdaten sind synthetische Beispielwerte und keine echten Hochschuldaten.
+
 ## Eigene Datenquelle verwenden
 
 Ohne externe Datenquelle erzeugt die App Beispielwerte. Fuer echte Hochschuldaten kann eine JSON-HTTP-Quelle konfiguriert werden:

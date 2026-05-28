@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS solar_readings (
     power_w REAL NOT NULL,
     energy_today_kwh REAL NOT NULL,
     temperature_c REAL NOT NULL,
+    data_source TEXT NOT NULL DEFAULT 'live',
+    is_test_data INTEGER NOT NULL DEFAULT 0,
     UNIQUE(timestamp, plant_id)
 );
 """
@@ -39,13 +41,18 @@ def initialize_database(connection: sqlite3.Connection) -> None:
 def insert_reading(connection: sqlite3.Connection, reading: dict[str, Any]) -> bool:
     """Insert one reading. Return True when a new row was written."""
 
+    stored_reading = {
+        **reading,
+        "data_source": reading.get("data_source", "live"),
+        "is_test_data": int(bool(reading.get("is_test_data", False))),
+    }
     cursor = connection.execute(
         """
         INSERT OR IGNORE INTO solar_readings
-        (timestamp, plant_id, power_w, energy_today_kwh, temperature_c)
-        VALUES (:timestamp, :plant_id, :power_w, :energy_today_kwh, :temperature_c)
+        (timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data)
+        VALUES (:timestamp, :plant_id, :power_w, :energy_today_kwh, :temperature_c, :data_source, :is_test_data)
         """,
-        reading,
+        stored_reading,
     )
     connection.commit()
     return cursor.rowcount > 0
@@ -56,14 +63,14 @@ def list_readings(connection: sqlite3.Connection, limit: int = 100) -> list[dict
 
     rows: Iterable[sqlite3.Row] = connection.execute(
         """
-        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c
+        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data
         FROM solar_readings
         ORDER BY timestamp DESC
         LIMIT ?
         """,
         (limit,),
     )
-    return [dict(row) for row in rows]
+    return [_row_to_dict(row) for row in rows]
 
 
 def latest_reading(connection: sqlite3.Connection) -> dict[str, Any] | None:
@@ -71,10 +78,16 @@ def latest_reading(connection: sqlite3.Connection) -> dict[str, Any] | None:
 
     row = connection.execute(
         """
-        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c
+        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data
         FROM solar_readings
         ORDER BY timestamp DESC
         LIMIT 1
         """
     ).fetchone()
-    return dict(row) if row else None
+    return _row_to_dict(row) if row else None
+
+
+def _row_to_dict(row: sqlite3.Row) -> dict[str, Any]:
+    data = dict(row)
+    data["is_test_data"] = bool(data["is_test_data"])
+    return data

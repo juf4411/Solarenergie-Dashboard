@@ -6,6 +6,7 @@ from solar_server import server
 def test_health_endpoint(monkeypatch):
     monkeypatch.setenv("SOLAR_DATABASE_PATH", ":memory:")
     monkeypatch.setenv("SOLAR_FETCH_INTERVAL_SECONDS", "3600")
+    monkeypatch.setenv("SOLAR_SEED_TEST_DATA", "false")
     monkeypatch.setattr(
         server,
         "fetch_reading",
@@ -28,6 +29,7 @@ def test_health_endpoint(monkeypatch):
 def test_summary_endpoint_returns_prepared_values(monkeypatch):
     monkeypatch.setenv("SOLAR_DATABASE_PATH", ":memory:")
     monkeypatch.setenv("SOLAR_FETCH_INTERVAL_SECONDS", "3600")
+    monkeypatch.setenv("SOLAR_SEED_TEST_DATA", "false")
     monkeypatch.setattr(
         server,
         "fetch_reading",
