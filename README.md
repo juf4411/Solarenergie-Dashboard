@@ -15,11 +15,35 @@ Portable Python-App fuer Solaranlagen-Daten einer Hochschule.
 - SQLite-Speicherung der Messwerte
 - Prometheus-Metriken fuer Grafana
 
-## Lokal testen
+## In PyCharm starten
+
+1. Repository in PyCharm oeffnen: `File > Open` und diesen Projektordner auswaehlen.
+2. Python Interpreter einrichten: `File > Settings > Project > Python Interpreter`.
+3. Abhaengigkeiten installieren:
 
 ```powershell
-python -m pip install -e ".[test]"
-pytest
+py -m pip install -r requirements.txt
+```
+
+4. Oben rechts die Run Configuration `Solar Dashboard API` auswaehlen.
+5. Gruenen Run-Button starten.
+
+Danach laeuft die App direkt aus PyCharm:
+
+- App/API: <http://localhost:8000>
+- API-Dokumentation: <http://localhost:8000/docs>
+- Metriken fuer Prometheus: <http://localhost:8000/metrics>
+
+Die Testdaten werden beim PyCharm-Start automatisch aus `testdata/solar_testdaten.json` geladen.
+
+## In PyCharm testen
+
+Oben rechts die Run Configuration `Solar Dashboard Tests` auswaehlen und starten.
+
+Alternativ im PyCharm-Terminal:
+
+```powershell
+py -m pytest
 ```
 
 ## Mit Docker starten
