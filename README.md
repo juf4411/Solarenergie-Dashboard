@@ -37,6 +37,8 @@ Danach laeuft die App direkt aus PyCharm:
 - API-Dokumentation: <http://localhost:8000/docs>
 - Metriken fuer Prometheus: <http://localhost:8000/metrics>
 
+Die Hauptnavigation im Dashboard bleibt auf der grafischen Seite. Technische Rohdaten und API-Ansichten sind im Bereich `Technik` verlinkt.
+
 Die Testdaten werden beim PyCharm-Start automatisch aus `testdata/solar_testdaten.json` geladen.
 
 Wichtig: Die App startet in PyCharm ueber `main.py`. Docker ist dafuer nicht notwendig.

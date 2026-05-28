@@ -11,11 +11,17 @@
       <div class="brand"><span class="brand-mark">SD</span><span>Solardaten</span></div>
       <nav>
         <a class="active" href="/">Dashboard</a>
-        <a href="/readings">Messwerte</a>
-        <a href="/summary">Kennzahlen</a>
-        <a href="/metrics">Metriken</a>
-        <a href="/docs">API Docs</a>
+        <a href="#leistung">Leistung</a>
+        <a href="#energie">Energie</a>
+        <a href="#messwerte">Messwerte</a>
       </nav>
+      <div class="api-links">
+        <p>Technik</p>
+        <a href="/readings">Rohdaten</a>
+        <a href="/summary">API Kennzahlen</a>
+        <a href="/metrics">Prometheus</a>
+        <a href="/docs">API Docs</a>
+      </div>
     </aside>
 
     <main class="page">
@@ -53,7 +59,7 @@
       </section>
 
       <section class="grid">
-        <article class="panel chart-panel">
+        <article class="panel chart-panel" id="leistung">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Leistung</p>
@@ -78,7 +84,7 @@
           </dl>
         </article>
 
-        <article class="panel chart-panel">
+        <article class="panel chart-panel" id="energie">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Energie</p>
@@ -88,7 +94,7 @@
           <canvas id="energyChart" width="780" height="300"></canvas>
         </article>
 
-        <article class="panel table-panel">
+        <article class="panel table-panel" id="messwerte">
           <div class="panel-title">
             <div>
               <p class="eyebrow">Letzte Werte</p>

@@ -27,6 +27,8 @@ body {
   padding: 22px 16px;
   background: #142328;
   color: #f6fbfb;
+  display: flex;
+  flex-direction: column;
 }
 
 .brand {
@@ -59,6 +61,32 @@ nav a {
 nav a.active,
 nav a:hover {
   background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.api-links {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.api-links p {
+  margin: 0 0 8px;
+  color: #7f969c;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.api-links a {
+  display: block;
+  color: #9eb1b6;
+  text-decoration: none;
+  padding: 7px 4px;
+  font-size: 12px;
+}
+
+.api-links a:hover {
   color: #ffffff;
 }
 
