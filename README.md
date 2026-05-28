@@ -1,6 +1,6 @@
-# Dashboard Solar
+# Solarenergie-Dashboard
 
-Portable Python-App fuer Solaranlagen-Daten einer Hochschule.
+Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammelt Messwerte, speichert sie, berechnet einfache Kennzahlen und stellt die Werte fuer ein Grafana-Dashboard bereit.
 
 ## Inhalt
 
@@ -14,6 +14,8 @@ Portable Python-App fuer Solaranlagen-Daten einer Hochschule.
 - Docker Compose mit App, Prometheus und Grafana
 - SQLite-Speicherung der Messwerte
 - Prometheus-Metriken fuer Grafana
+
+Eine kurze fachliche Erklaerung steht in `PROJEKT_ERKLAERUNG.md`.
 
 ## In PyCharm starten
 
@@ -35,6 +37,8 @@ Danach laeuft die App direkt aus PyCharm:
 - Metriken fuer Prometheus: <http://localhost:8000/metrics>
 
 Die Testdaten werden beim PyCharm-Start automatisch aus `testdata/solar_testdaten.json` geladen.
+
+Wichtig: Die App startet in PyCharm ueber `main.py`. Docker ist dafuer nicht notwendig.
 
 ## In PyCharm testen
 

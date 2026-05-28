@@ -75,6 +75,7 @@ def seed_test_data(app: FastAPI) -> int:
 def polling_loop(app: FastAPI, stop_event: threading.Event) -> None:
     """Run the recurring data collection loop."""
 
+    # Der Thread holt im Hintergrund regelmaessig neue Messwerte.
     while not stop_event.wait(app.state.config.fetch_interval_seconds):
         try:
             collect_once(app)
@@ -98,6 +99,7 @@ async def lifespan(app: FastAPI):
     except Exception:
         logger.exception("initial solar collection failed")
 
+    # FastAPI laeuft weiter, waehrend dieser Thread neue Werte sammelt.
     stop_event = threading.Event()
     thread = threading.Thread(target=polling_loop, args=(app, stop_event), daemon=True)
     thread.start()
