@@ -5,7 +5,6 @@ from solar_processing.processing import (
     format_reading_for_display,
 )
 
-
 READINGS = [
     {
         "timestamp": "2026-05-28T11:00:00+00:00",

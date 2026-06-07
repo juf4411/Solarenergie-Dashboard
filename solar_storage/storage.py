@@ -1,10 +1,9 @@
 """SQLite persistence for normalized solar readings."""
 
+import sqlite3
 from collections.abc import Iterable
 from pathlib import Path
-import sqlite3
 from typing import Any
-
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS solar_readings (
@@ -49,8 +48,14 @@ def insert_reading(connection: sqlite3.Connection, reading: dict[str, Any]) -> b
     cursor = connection.execute(
         """
         INSERT OR IGNORE INTO solar_readings
-        (timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data)
-        VALUES (:timestamp, :plant_id, :power_w, :energy_today_kwh, :temperature_c, :data_source, :is_test_data)
+        (
+            timestamp, plant_id, power_w, energy_today_kwh,
+            temperature_c, data_source, is_test_data
+        )
+        VALUES (
+            :timestamp, :plant_id, :power_w, :energy_today_kwh,
+            :temperature_c, :data_source, :is_test_data
+        )
         """,
         stored_reading,
     )
@@ -63,7 +68,9 @@ def list_readings(connection: sqlite3.Connection, limit: int = 100) -> list[dict
 
     rows: Iterable[sqlite3.Row] = connection.execute(
         """
-        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data
+        SELECT
+            timestamp, plant_id, power_w, energy_today_kwh,
+            temperature_c, data_source, is_test_data
         FROM solar_readings
         ORDER BY timestamp DESC
         LIMIT ?
@@ -78,7 +85,9 @@ def latest_reading(connection: sqlite3.Connection) -> dict[str, Any] | None:
 
     row = connection.execute(
         """
-        SELECT timestamp, plant_id, power_w, energy_today_kwh, temperature_c, data_source, is_test_data
+        SELECT
+            timestamp, plant_id, power_w, energy_today_kwh,
+            temperature_c, data_source, is_test_data
         FROM solar_readings
         ORDER BY timestamp DESC
         LIMIT 1

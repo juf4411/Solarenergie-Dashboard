@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY pyproject.toml ./
+COPY solar_cleaning ./solar_cleaning
 COPY solar_config ./solar_config
 COPY solar_fetcher ./solar_fetcher
 COPY solar_processing ./solar_processing

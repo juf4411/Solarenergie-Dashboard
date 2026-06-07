@@ -1,15 +1,13 @@
 """FastAPI server that updates, stores, exposes, and exports solar metrics."""
 
-from contextlib import asynccontextmanager
 import logging
-from pathlib import Path
 import threading
-import time
+from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from prometheus_client import CONTENT_TYPE_LATEST, Gauge, generate_latest
-from starlette.responses import FileResponse
-from starlette.responses import Response
+from starlette.responses import FileResponse, Response
 from starlette.staticfiles import StaticFiles
 
 from solar_config.config import load_config, validate_config
@@ -23,7 +21,6 @@ from solar_storage.storage import (
     list_readings,
 )
 
-
 logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = PROJECT_ROOT / "dashboard"
@@ -32,7 +29,9 @@ CURRENT_POWER = Gauge("solar_current_power_w", "Current photovoltaic power in wa
 AVERAGE_POWER = Gauge("solar_average_power_w", "Average photovoltaic power in watts")
 DAILY_ENERGY = Gauge("solar_daily_energy_kwh", "Daily photovoltaic energy in kWh")
 TEMPERATURE = Gauge("solar_temperature_c", "Solar plant temperature in Celsius")
-TEST_DATA_ACTIVE = Gauge("solar_test_data_active", "1 when the latest solar reading is marked as test data")
+TEST_DATA_ACTIVE = Gauge(
+    "solar_test_data_active", "1 when the latest solar reading is marked as test data"
+)
 
 
 def collect_once(app: FastAPI) -> dict:

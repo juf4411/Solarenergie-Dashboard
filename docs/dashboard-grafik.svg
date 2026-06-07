@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#eef3f1"/>
+  <rect width="230" height="760" fill="#142328"/>
+  <rect x="28" y="28" width="44" height="44" rx="10" fill="#20b4d8"/>
+  <text x="50" y="57" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="700" fill="#fff">SD</text>
+  <text x="88" y="57" font-family="Segoe UI, Arial" font-size="18" font-weight="700" fill="#fff">Solardaten</text>
+  <rect x="24" y="110" width="182" height="42" rx="8" fill="#314348"/>
+  <text x="44" y="137" font-family="Segoe UI, Arial" font-size="16" fill="#fff">Dashboard</text>
+  <text x="44" y="198" font-family="Segoe UI, Arial" font-size="15" fill="#b8c8cc">Leistung</text>
+  <text x="44" y="252" font-family="Segoe UI, Arial" font-size="15" fill="#b8c8cc">Energie</text>
+  <text x="44" y="306" font-family="Segoe UI, Arial" font-size="15" fill="#b8c8cc">Messwerte</text>
+  <text x="44" y="612" font-family="Segoe UI, Arial" font-size="13" font-weight="700" fill="#7f969c">TECHNIK</text>
+  <text x="44" y="650" font-family="Segoe UI, Arial" font-size="13" fill="#9eb1b6">Rohdaten / API / Prometheus</text>
+
+  <text x="280" y="60" font-family="Segoe UI, Arial" font-size="13" font-weight="800" fill="#21a675">HOCHSCHULE PV-ANLAGE</text>
+  <text x="280" y="104" font-family="Segoe UI, Arial" font-size="36" font-weight="800" fill="#1e2a2f">Solarenergie Dashboard</text>
+  <rect x="990" y="54" width="140" height="40" rx="8" fill="#dff8ec"/>
+  <text x="1060" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="800" fill="#116f4e">TESTDATEN</text>
+
+  <rect x="280" y="145" width="430" height="235" rx="8" fill="#fff" stroke="#dbe5e1"/>
+  <rect x="300" y="165" width="390" height="160" rx="8" fill="#d7e4e6"/>
+  <path d="M300 295 L690 215 L690 325 L300 325 Z" fill="#76959b"/>
+  <rect x="330" y="192" width="250" height="92" rx="4" fill="#263942"/>
+  <line x1="350" y1="192" x2="350" y2="284" stroke="#6d8790" stroke-width="3"/>
+  <line x1="390" y1="192" x2="390" y2="284" stroke="#6d8790" stroke-width="3"/>
+  <line x1="430" y1="192" x2="430" y2="284" stroke="#6d8790" stroke-width="3"/>
+  <line x1="470" y1="192" x2="470" y2="284" stroke="#6d8790" stroke-width="3"/>
+  <text x="300" y="357" font-family="Segoe UI, Arial" font-size="15" fill="#6c7b80">Aktuelle Anlage</text>
+  <text x="415" y="357" font-family="Segoe UI, Arial" font-size="18" font-weight="800" fill="#1e2a2f">hochschule-pv-testanlage</text>
+
+  <g font-family="Segoe UI, Arial">
+    <rect x="730" y="145" width="130" height="110" rx="8" fill="#fff" stroke="#dbe5e1"/>
+    <text x="748" y="176" font-size="13" fill="#6c7b80">Aktuelle Leistung</text>
+    <text x="748" y="220" font-size="30" font-weight="800" fill="#1e2a2f">2.710 W</text>
+    <rect x="880" y="145" width="130" height="110" rx="8" fill="#fff" stroke="#dbe5e1"/>
+    <text x="898" y="176" font-size="13" fill="#6c7b80">Mittelwert</text>
+    <text x="898" y="220" font-size="30" font-weight="800" fill="#1e2a2f">4.687 W</text>
+    <rect x="1030" y="145" width="130" height="110" rx="8" fill="#fff" stroke="#dbe5e1"/>
+    <text x="1048" y="176" font-size="13" fill="#6c7b80">Energie heute</text>
+    <text x="1048" y="220" font-size="28" font-weight="800" fill="#1e2a2f">28,57</text>
+    <text x="1048" y="244" font-size="14" fill="#6c7b80">kWh</text>
+  </g>
+
+  <rect x="280" y="410" width="560" height="260" rx="8" fill="#fff" stroke="#dbe5e1"/>
+  <text x="310" y="448" font-family="Segoe UI, Arial" font-size="13" font-weight="800" fill="#21a675">LEISTUNG</text>
+  <text x="310" y="477" font-family="Segoe UI, Arial" font-size="24" font-weight="800" fill="#1e2a2f">Tagesverlauf</text>
+  <polyline points="330,620 390,585 450,540 510,500 570,455 630,470 690,510 750,555 810,590" fill="none" stroke="#246bfe" stroke-width="5"/>
+  <line x1="330" y1="630" x2="810" y2="630" stroke="#dbe5e1"/>
+  <line x1="330" y1="450" x2="330" y2="630" stroke="#dbe5e1"/>
+
+  <rect x="870" y="410" width="290" height="260" rx="8" fill="#fff" stroke="#dbe5e1"/>
+  <text x="900" y="448" font-family="Segoe UI, Arial" font-size="13" font-weight="800" fill="#21a675">STATUS</text>
+  <text x="900" y="477" font-family="Segoe UI, Arial" font-size="24" font-weight="800" fill="#1e2a2f">Auslastung</text>
+  <circle cx="1015" cy="560" r="65" fill="none" stroke="#e7eef1" stroke-width="26"/>
+  <path d="M1015 495 A65 65 0 0 1 1078 575" fill="none" stroke="#246bfe" stroke-width="26" stroke-linecap="round"/>
+  <text x="1015" y="570" text-anchor="middle" font-family="Segoe UI, Arial" font-size="28" font-weight="800" fill="#1e2a2f">49%</text>
+</svg>

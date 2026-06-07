@@ -4,19 +4,23 @@ Kleine Python-Anwendung fuer Solaranlagen-Daten einer Hochschule. Die App sammel
 
 ## Inhalt
 
-- 5 Python-Module in eigenen Ordnern:
+- 6 Python-Module in eigenen Ordnern:
   - `solar_config/config.py`
   - `solar_fetcher/fetcher.py`
+  - `solar_cleaning/cleaning.py`
   - `solar_storage/storage.py`
   - `solar_processing/processing.py`
   - `solar_server/server.py`
-- 5 zugehoerige Testdateien im Ordner `tests`
+- zugehoerige Testdateien im Ordner `tests`
 - Docker Compose mit App, Prometheus und Grafana als optionales Monitoring
 - SQLite-Speicherung der Messwerte
 - Prometheus-Metriken fuer technische Auswertung
+- Ruff fuer Formatting und Linting
+- GitHub Actions Workflow fuer CI
 
 Eine kurze fachliche Erklaerung steht in `PROJEKT_ERKLAERUNG.md`.
 Das Campusbild im Dashboard stammt aus Wikimedia Commons; die genaue Quelle steht in `dashboard/assets/README.md`.
+Weitere Abgabe-Dokumente stehen im Ordner `docs`.
 
 ## Welche Ansicht ist wichtig?
 
@@ -64,6 +68,13 @@ Alternativ im PyCharm-Terminal:
 
 ```powershell
 py -m pytest
+```
+
+## Formatting und Linting
+
+```powershell
+py -m ruff format .
+py -m ruff check .
 ```
 
 ## Mit Docker starten

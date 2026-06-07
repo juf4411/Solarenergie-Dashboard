@@ -30,6 +30,7 @@ Die Vorgabe war, mehrere einzelne Python-Dateien bzw. Module zu verwenden. Desha
 
 - `solar_config/config.py`: liest Einstellungen aus Umgebungsvariablen
 - `solar_fetcher/fetcher.py`: holt Daten oder erzeugt Testdaten
+- `solar_cleaning/cleaning.py`: prueft und bereinigt Rohdaten
 - `solar_storage/storage.py`: speichert Messwerte in SQLite
 - `solar_processing/processing.py`: berechnet Werte fuer das Dashboard
 - `solar_server/server.py`: stellt API-Endpunkte und Prometheus-Metriken bereit
